@@ -4,11 +4,45 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+   
+    <link
+      rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+     />
+
     <title>Document</title>
 </head>
-<body class=" bg-violet-950 ">
-     <div class="  ">
-
+<body class=" bg-violet-950 flex justify-center h-screen">
+     <div class="flex flex-col mt-[10%] w-[60%]">
+          <div class="flex items-center justify-center bg-violet-700 p-2">
+            <div class="rounded-full mr-auto flex justify-center items-center bg-white w-9 h-9">
+               <i class="fa-solid fa-plus text-lg text-violet-500"></i>
+            </div>
+            <span class="text-white text-center font-bold text-2xl flex-1 ">My Tasks</span>
+            
+         </div>
+          <div class="h-[50%] bg-gray-200">
+                  <div  class="bg-white hover:shadow-lg hover:shadow-gray-400 transition-all duration-300 ease-in-out px-5 border-b py-3 flex m-5 justify-between">
+                    <div class="flex flex-col gap-2">
+                        <span class="text-lg">read book</span>
+                        <div class="flex justify-center text-sm items-center gap-2">
+                          <span><i class="fa-chisel fa-regular fa-calendar"></i></span>
+                          <span>12/11/2026</span>
+                        </div>
+                    </div>
+                    <div class="flex justify-center items-center gap-8">
+                         <button class="rounded-full hover:shadow-lg hover:shadow-gray-400 transition-all duration-300 ease-in-out mr-auto flex justify-center shadow-lg items-center bg-rose-950 w-9 h-9">
+                              <i class="fa-solid  text-white text-sm fa-trash"></i>
+                         </button>
+                         <button class="rounded-full mr-auto hover:shadow-lg hover:shadow-gray-400 transition-all duration-300 ease-in-out flex justify-center shadow-lg items-center bg-green-600 w-9 h-9">
+                              <i class="fa-solid  text-white text-sm fa-check"></i>
+                         </button>
+                         <button class="rounded-full mr-auto flex hover:shadow-lg hover:shadow-gray-400 transition-all duration-300 ease-in-out justify-center shadow-lg items-center bg-indigo-500 w-9 h-9">
+                              <i class="fa-solid fa-pen text-sm text-white text-md"></i>
+                         </button>
+                    </div>
+                </div>
+          </div>
      </div>
     
 </body>
