@@ -16,7 +16,7 @@
 <body class=" bg-violet-950 flex justify-center h-screen">
      <div class="flex flex-col mt-[10%] w-[60%]">
           <div class="flex items-center justify-center bg-violet-700 p-2">
-            <div class="rounded-full mr-auto flex justify-center items-center bg-white w-9 h-9">
+            <div id="openPopup" class="rounded-full mr-auto cursor-pointer flex justify-center items-center bg-white w-9 h-9">
                <i class="fa-solid fa-plus text-lg text-violet-500"></i>
             </div>
             <span class="text-white text-center font-bold text-2xl flex-1 ">My Tasks</span>
@@ -26,6 +26,39 @@
                 
           </div>
      </div>
+
+
+<div id="popup" class="hidden fixed inset-0 bg-black/50 flex justify-center items-center">
+    <div class="bg-white p-6 rounded-xl w-[350px] flex flex-col gap-4">
+
+        <h2 class="text-xl font-bold text-violet-700">Add New Task</h2>
+
+        <input
+            id="taskName"
+            type="text"
+            placeholder="Enter task name"
+            class="border p-2 rounded-lg outline-none"
+        >
+
+        <input
+            id="taskDate"
+            type="date"
+            class="border p-2 rounded-lg outline-none"
+        >
+
+        <div class="flex justify-end gap-2">
+            <button id="cancelBtn" class="bg-gray-300 px-4 py-2 rounded-lg cursor-pointer">
+                Cancel
+            </button>
+
+            <button id="saveBtn" class="bg-violet-700 text-white px-4 py-2 rounded-lg cursor-pointer">
+                Add Task
+            </button>
+        </div>
+
+    </div>
+</div>
+
     
      <script src="todo.js"></script>
 </body>
