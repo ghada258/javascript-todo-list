@@ -2,25 +2,25 @@ let tasks = [
     {
        id : 1,
        taskName:"Read Book",
-       date : "12/11/2026",
+       date : "2026-11-12",
        isDone: true
     },
      {
        id : 2,
        taskName:"Write Email",
-       date : "12/11/2026",
+       date : "2026-11-12",
        isDone: true
     },
      {
        id : 3,
        taskName:"Gym",
-       date : "12/11/2026",
+       date : "2026-11-12",
        isDone: true
     },
      {
        id : 4,
        taskName:"Study",
-       date : "12/11/2026",
+       date : "2026-11-12",
        isDone: true
     },
 ]
@@ -37,20 +37,19 @@ function renderTasks() {
                         </div>
                     </div>
                     <div class="flex justify-center items-center gap-8">
-                         <button class="rounded-full mr-auto cursor-pointer flex justify-center shadow-lg items-center bg-rose-950 w-9 h-9">
+                         <button onclick="deleteTask(${t.id})" class="rounded-full mr-auto cursor-pointer flex justify-center shadow-lg items-center bg-rose-950 w-9 h-9">
                               <i class="fa-solid  text-white text-sm fa-trash"></i>
                          </button>
-                         <button class="rounded-full mr-auto cursor-pointer flex justify-center shadow-lg items-center bg-green-600 w-9 h-9">
+                         <button  class="rounded-full mr-auto cursor-pointer flex justify-center shadow-lg items-center bg-green-600 w-9 h-9">
                               <i class="fa-solid  text-white text-sm fa-check"></i>
                          </button>
-                         <button class="rounded-full mr-auto cursor-pointer flex  justify-center shadow-lg items-center bg-indigo-500 w-9 h-9">
+                         <button onclick="editTask(${t.id})" class="rounded-full mr-auto cursor-pointer flex  justify-center shadow-lg items-center bg-indigo-500 w-9 h-9">
                               <i class="fa-solid fa-pen text-sm text-white text-md"></i>
                          </button>
                     </div>
                 </div> `;
 }).join("")
  
-
 
 }
 
@@ -61,6 +60,9 @@ function renderTasks() {
      let openPopup = document.getElementById("openPopup");
      let cancelBtn = document.getElementById("cancelBtn");
      let saveBtn = document.getElementById("saveBtn");
+     let del = document.getElementById("del");
+     let title = document.getElementById("title");
+     let editingTaskId = null;
      
 
      openPopup.addEventListener("click", function () {
@@ -69,11 +71,23 @@ function renderTasks() {
 
      cancelBtn.addEventListener("click", function () {
      popup.classList.add("hidden");
+        editingTaskId = null;
      });
 
      saveBtn.addEventListener("click",function(){
       let taskname = document.getElementById("taskName").value;
       let taskDate = document.getElementById("taskDate").value;
+
+         if (editingTaskId !== null) {
+
+        let task = tasks.find(function(t) {
+            return t.id === editingTaskId;
+        });
+
+        task.taskName = taskname;
+        task.date = taskDate;
+
+    } else {
 
          let newTask = {
           id: Date.now(),
@@ -81,11 +95,34 @@ function renderTasks() {
           date: taskDate,
           isDone: false
         };
-
-        tasks.push(newTask);
+          tasks.push(newTask);
+      }
+      
         popup.classList.add("hidden");
         renderTasks();
      })
+
+     function deleteTask(id) {
+      tasks = tasks.filter(function(task) {
+         return task.id !== id;
+      });
+      renderTasks();
+   }
+
+   function editTask(id) {
+    let task = tasks.find(function(t) {
+        return t.id === id;});
+    
+    editingTaskId = id;
+    popup.classList.remove("hidden");
+    document.getElementById("taskName").value = task.taskName;
+    document.getElementById("taskDate").value = task.date;
+    saveBtn.innerText = "Update Task";
+    title.innerText = "Update Task";
+   }
+
+
+
 
 
 
