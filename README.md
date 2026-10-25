@@ -75,14 +75,6 @@ This project demonstrates practical use of:
 - **CRUD Operations:** Create, read, update, and delete tasks.
 - **Local Storage:** Persist task data using `JSON.stringify()` and `JSON.parse()`.
 
-## 🔮 Future Improvements
-
-- Add input validation to prevent empty task names.
-- Add a confirmation dialog before deleting tasks.
-- Add filters for all, completed, and pending tasks.
-- Display a counter for total and completed tasks.
-- Improve the user interface for mobile devices.
-
 ## 👩‍💻 Author
 
 **Ghada Elsayed**
