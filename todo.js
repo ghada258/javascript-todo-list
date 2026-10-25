@@ -25,12 +25,20 @@ let tasks = [
     },
 ]
 
+function getTasks(){
+   let returnedTasks = JSON.parse(localStorage.getItem("tasks"));
+   tasks = returnedTasks ?? []
+}
+
+getTasks();
+
+
 
 function renderTasks() {
     let task = document.getElementById("tasks").innerHTML = tasks.map(function(t){
- return` <div  class=" ${t.isDone ? "bg-gray-300" :"bg-white"} hover:shadow-lg hover:shadow-gray-400 transition-all duration-300 ease-in-out px-5 border-b py-3 flex  justify-between">
+ return` <div  class=" ${t.isDone ? "bg-green-300" :"bg-white"} hover:shadow-lg hover:shadow-gray-400 transition-all duration-300 ease-in-out px-5 border-b py-3 flex  justify-between">
                     <div class="flex flex-col gap-2">
-                        <span class="text-lg font-medium">${t.taskName}</span>
+                        <span class="${t.isDone ? "line-through" :""} text-lg font-medium">${t.taskName}</span>
                         <div class="flex justify-center text-sm items-center gap-2">
                           <span><i class="fa-chisel fa-regular fa-calendar"></i></span>
                           <span>${t.date}</span>
@@ -40,7 +48,7 @@ function renderTasks() {
                          <button onclick="deleteTask(${t.id})" class="rounded-full mr-auto cursor-pointer flex justify-center shadow-lg items-center bg-rose-950 w-9 h-9">
                               <i class="fa-solid  text-white text-sm fa-trash"></i>
                          </button>
-                         <button onclick="doneTask(${t.id})"  class="rounded-full mr-auto cursor-pointer flex justify-center shadow-lg items-center ${t.isDone ? "bg-gray-400" :"bg-green-600"}  w-9 h-9">
+                         <button onclick="doneTask(${t.id})"  class="rounded-full mr-auto cursor-pointer flex justify-center shadow-lg items-center ${t.isDone ? "bg-gray-500" :"bg-green-600"}  w-9 h-9">
 
                          ${t.isDone
                                     ? `<i class="fa-solid text-white text-md fa-xmark"></i>`
@@ -101,6 +109,7 @@ function renderTasks() {
           isDone: false
         };
           tasks.push(newTask);
+          storeTasks();
       }
       
         popup.classList.add("hidden");
@@ -111,6 +120,7 @@ function renderTasks() {
       tasks = tasks.filter(function(task) {
          return task.id !== id;
       });
+      storeTasks();
       renderTasks();
    }
 
@@ -124,6 +134,7 @@ function renderTasks() {
     document.getElementById("taskDate").value = task.date;
     saveBtn.innerText = "Update Task";
     title.innerText = "Update Task";
+    storeTasks();
    }
 
 
@@ -132,7 +143,13 @@ function renderTasks() {
         return t.id === id;});
 
       task.isDone = !task.isDone;
+      storeTasks();
       renderTasks();
+
+   }
+
+   function storeTasks(){
+     localStorage.setItem("tasks",JSON.stringify(tasks));
    }
 
 
