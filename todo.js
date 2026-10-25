@@ -87,13 +87,13 @@ function renderTasks() {
         editingTaskId = null;
      });
 
-     saveBtn.addEventListener("click",function(){
-      let taskname = document.getElementById("taskName").value;
-      let taskDate = document.getElementById("taskDate").value;
+    saveBtn.addEventListener("click", function () {
+    let taskname = document.getElementById("taskName").value;
+    let taskDate = document.getElementById("taskDate").value;
 
-         if (editingTaskId !== null) {
+    if (editingTaskId !== null) {
 
-        let task = tasks.find(function(t) {
+        let task = tasks.find(function (t) {
             return t.id === editingTaskId;
         });
 
@@ -102,19 +102,29 @@ function renderTasks() {
 
     } else {
 
-         let newTask = {
-          id: Date.now(),
-          taskName: taskname,
-          date: taskDate,
-          isDone: false
+        let newTask = {
+            id: Date.now(),
+            taskName: taskname,
+            date: taskDate,
+            isDone: false
         };
-          tasks.push(newTask);
-          storeTasks();
-      }
-      
-        popup.classList.add("hidden");
-        renderTasks();
-     })
+
+        tasks.push(newTask);
+    }
+
+    storeTasks();
+    renderTasks();
+
+    popup.classList.add("hidden");
+
+    editingTaskId = null;
+
+    title.innerText = "Add New Task";
+    saveBtn.innerText = "Add Task";
+
+    document.getElementById("taskName").value = "";
+    document.getElementById("taskDate").value = "";
+});
 
      function deleteTask(id) {
       tasks = tasks.filter(function(task) {
